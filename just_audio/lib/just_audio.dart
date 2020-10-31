@@ -498,7 +498,8 @@ class AudioPlayer {
         throw PlayerException(int.parse(e.code), e.message);
       } on FormatException catch (_) {
         if (e.code == 'abort') {
-          throw PlayerInterruptedException(e.message);
+          _audioSource = null;
+          return null;
         } else {
           throw PlayerException(9999999, e.message);
         }
